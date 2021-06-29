@@ -75,7 +75,7 @@ Warning: Blurring too much can cause data to be lost!
 - Bilateral
 
 
-## CNN introduction
+# CNN introduction
 
 Convolution - Mathematical operation on 2 objects to produce an outcome that expresses how the shape of one is modified by the other. Convolution is using a kernel to extract certain features from an input image. 
 
@@ -93,7 +93,7 @@ Why do we stack convolution layers?
 
 It allows layers close to the input to learn low-level features (e.g. lines) and layers deeper into the model to learn high-order or more abstract features like shapes or specific objects. 
 
-### Kernel vs filter
+## Kernel vs filter
 
 A filter is a concatenation of multiple kernels. Filters are always one dimensionality higher than the kernel and can be seen as multiple kernels stacked ontop of each other where every kernel is for a particular channel.
 So in 2D convolutions, filters are 3D matrices. 
@@ -102,7 +102,7 @@ More info on different types of CNN [here](https://towardsdatascience.com/types-
 
 ![cnn diagram](assets/cnn_diagram.png)
 
-### Padding and stride
+## Padding and stride
 
 Why?: Pixels at the corners of an image aren't calculated with the same amount of weighting as the center. If you apply convolution repeatedly you may lose this information.
 
@@ -119,5 +119,62 @@ One of the limitations of the feature map is that it records precise positions o
 
 This is solved by a technique called down sampling which aims to capture the most important parts of the data without fine details. This is done by creating a lower resolution version of the input signal. Increasing the stride is one example of this but another popular method is called pooling.
 
-### Pooling
+![padding with zeroes](assets/cnn_with_padding.png)
 
+## Pooling
+
+A pooling layer is a new layer added after the convolutional layer. Specifically, after a nonlinearity (e.g. ReLU) has been applied to the feature maps output by a convolutional layer.
+
+The addition of a pooling layer after the convolutional layer is a common pattern used for ordering layers within a convolutional neural network that may be repeated one or more times in a given model.
+
+The pooling layer operates upon each feature map separately to create a new set of the same number of pooled feature maps.
+
+Pooling involves selecting a pooling operation, much like a filter to be applied to feature maps. The size of the pooling operation or filter is smaller than the size of the feature map; specifically, it is almost always 2×2 pixels applied with a stride of 2 pixels.
+
+This means that the pooling layer will always reduce the size of each feature map by a factor of 2, e.g. each dimension is halved, reducing the number of pixels or values in each feature map to one quarter the size. For example, a pooling layer applied to a feature map of 6×6 (36 pixels) will result in an output pooled feature map of 3×3 (9 pixels).
+
+Average Pooling: Calculate the average value of each patch on the feature map. 
+Max Pooling: Calculate the max value of each patch in the feature map. 
+
+Pros:
+
+- Improve translational invariance
+- Downsampling: Reduce memory and computational cost
+- Downsampling: Look more globally
+
+![max pooling](assets/max-pooling.png)
+
+The result of using a pooling layer and creating down sampled or pooled feature maps is a summarized version of the features detected in the input. They are useful as small changes in the location of the feature in the input detected by the convolutional layer will result in a pooled feature map with the feature in the same location. This capability added by pooling is called the model’s invariance to local translation.
+
+"In all cases, pooling helps to make the representation become approximately invariant to small translations of the input. Invariance to translation means that if we translate the input by a small amount, the values of most of the pooled outputs do not change." - Deep Learning 2016
+
+## Activation function
+
+Theres a lot of different activation functions we can use e.g. sigmoid, tanh etc. but ReLU is the one that is typically used with CNN's.
+
+![activation functions](assets/activation_fns.png)
+
+Pros: 
+
+- Faster convergence
+- Easier and faster calculations
+- Lower probability of vanishing gradient
+
+Cons:
+
+- Dying ReLU -> It can die if the inputs fall into the negative half (There are some other types of ReLU which can help solve this problem)
+
+## Batch Normalization
+
+Network is easier to train if the input is normalised (e.g. zero mean, unit variance). However in the CNN the paramaters are constantly changing which leads to data having a different distribution per layer. 
+
+To solve this problem we introduce batch normalization. 
+
+
+![batch normalization](assets/batch_norm.png)
+
+## Fully connected layers
+
+The purpose of the fully connected layers is to flattern the output of the convolution layers to create a single long feature vector. Each output is connected to ALL flatterned features (hence the name fully connected layers).
+
+![fully connected layers](assets/fully-connected-layer.png)
