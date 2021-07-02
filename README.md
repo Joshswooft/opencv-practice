@@ -38,7 +38,7 @@ code can be found in `src/basic_img_manipulations.py`
 code can be found in `src/plotting_shapes.py`
 
 
-# Part 3. Image pre-processing
+# Part 3. Spatial Domain Image pre-processing
 
 We use a variety of techniques to prepare images for our models to achieve better results. To better understand this it's useful to take a step back and try to understand how we perceive images. 
 
@@ -57,6 +57,22 @@ If we are to understand images we can see that edges and contour detection is pr
 There's also other things to consider when thinking about images. It's remarkable how we are able to tell 2 objects apart from one another and even identify the target amongst other objects in the background. Even toddlers are capable of recognising objects at different scale, colour and rotation however this is not a trivial task for a computer that often has a hard time trying to identify pixels which come from the object we want to label and the one in the background. 
 
 Fortunately there are some steps which can make edge detection easier. 
+
+Spatial domain processing = "direct" processing
+
+Examples:
+- Intensities (Brightness, negative, gamma)
+- Histogram (Stretching, equalisation)
+- Spatial Filtering (Mean/median/gaussian/gradient-based filter, laplacian/unsharp masking)
+
+### Intensities
+
+Graylevels
+
+![thumnail](assets/spatial_images/surfing_thumb.png)
+![grayscale](assets/spatial_images/grayscale.png)
+![negative](assets/spatial_images/negative.jpg)
+![thresholded](assets/spatial_images/thresholded.png)
 
 ## Blurring
 
