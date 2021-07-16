@@ -31,11 +31,11 @@ If VSC is not linting or suggestions aren't working correctly then:
 - rotating
 - resizing
 
-code can be found in `src/basic_img_manipulations.py`
+code can be found in `src/001-basics-img-manipulations/basic_img_manipulations.py`
 
 # Part 2. Plotting shapes
 
-code can be found in `src/plotting_shapes.py`
+code can be found in `src/002-plotting-shapes/plotting_shapes.py`
 
 
 # Part 3. Spatial Domain Image pre-processing
