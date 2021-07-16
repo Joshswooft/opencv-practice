@@ -189,3 +189,102 @@ To solve this problem we introduce batch normalization.
 The purpose of the fully connected layers is to flattern the output of the convolution layers to create a single long feature vector. Each output is connected to ALL flatterned features (hence the name fully connected layers).
 
 ![fully connected layers](assets/fully-connected-layer.png)
+
+
+## Part 4 Morphological Image processing
+
+With Morphological image processing we are interested in the shape/form/structure of the image and their characteristics and relationships.
+
+It has various use cases:
+
+- Cleaning/smoothing images => i.e. removing excess data that may confuse our network
+- Image analysis => detecting patterns/corners, boundary extraction
+
+Structuring Elements (SE) are sub images (think of images as sets so these are sub sets.) used to probe images to find interesting properties. Similar in concept to filter kernels. 
+
+An example makes this clearer to see:
+
+![SE example](assets/004_morphological/structuring_elem_example.png)
+
+SE specifies which neighbouring pixels are considered in determining the fate of the pixel in consideration.
+
+### Hits and Fits
+
+- Fit: *All* the on-pixels (coloured) in the SE fit the section on the image
+- Hit: *Any* of the on-pixels in the SE fit the section on the image.
+
+![Hits and fits](assets/004_morphological/hits-fits.png)
+
+### Erosion
+
+![Erosion formulae](assets/004_morphological/erosion-formula.png)
+
+This can be thought as the erosion of image A by the SE B.
+
+The SE B is positioned at a location in A and the new pixel value is determined to be: 
+
+- 1 if B *fits* A
+- 0 otherwise
+
+Remember this is normally applied to binary images so 0 = Black and 1 = White.
+
+![Erosion example](assets/004_morphological/erosion-example.png)
+
+Use cases: 
+
+- Can split two objects in the image
+- Removes small inflections from an object. 
+
+## Dilation
+
+The dilation of image A by set B.
+
+![Dilation Formula](assets/004_morphological/dilation-formula.png)
+
+The SE B is positioned at a location in A and the new pixel value is determined to be: 
+
+- 1 if B *hits* A
+- 0 otherwise
+
+![Dilation Example](assets/004_morphological/dilation-example.png)
+
+Enlarges an image!
+
+Use Cases: 
+
+- Fills in gaps/breaks in an object. => This is useful in repairing text.
+
+Things to note: 
+
+- Erosion is not the inverse of dilution.  
+- Dilution is not the inverse of Erosion.
+
+### Opening
+
+Opening = Erosion -> Dilation with same SE
+
+![opening](assets/004_morphological/opening-formula.png)
+
+Use cases: 
+- Smoothes object boundaries
+- Eliminates extrusions
+- Can split object aparts
+- Removes isolated pixels/pixel groups 
+
+### Closing
+
+Closing = Dilation -> Erosion with same SE
+
+Use cases: 
+- Smoothes object boundary
+- Eliminates intrusions
+- Can link closely object
+- Removes holes
+
+Opening is not the inverse of closing and vice versa. 
+
+![Properties of Opening and closing](assets/004_morphological/properties-opening-closing.png)
+
+![Fingerprint example](assets/004_morphological/fingerprint-example.png)
+
+
