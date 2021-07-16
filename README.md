@@ -1,17 +1,12 @@
 Messing around with opencv in python
 
+# Getting Started
 
-# Installation
-
-python3 -m pip install -r requirements.txt
-
-# Developing
-
-We use a virtual environment to do all our development in, this ensures that we don't import modules that accidentally
-conflict with other project work. 
+We use a virtual environment to do all our development in, this ensures that we don't import modules that accidentally conflict with other project work. 
 
 1. `python3 -m venv venv` - this will create your virtual environment inside a `venv` folder
 2. `source venv/bin/activate` - this will activate your virtual env
+3. `python3 -m pip install -r requirements.txt`
 
 ## Adding new modules
 
