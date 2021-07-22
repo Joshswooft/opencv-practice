@@ -287,4 +287,11 @@ Opening is not the inverse of closing and vice versa.
 
 ![Fingerprint example](assets/004_morphological/fingerprint-example.png)
 
+Tutorial example
 
+![closing](assets/004_morphological/tut/closing.png) Closing
+![opening](assets/004_morphological/tut/opening.png) Opening
+![erosion](assets/004_morphological/tut/eroded.png) Erosion
+![dilation](assets/004_morphological/tut/dilation.png) Dilation
+
+### Boundary Extraction
