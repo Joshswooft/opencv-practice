@@ -304,3 +304,18 @@ The contour-detection algorithms in OpenCV work very well, when the image has a 
 But when the background of the input image is cluttered or has the same pixel intensity as the object-of-interest, the algorithms don’t fare so well.
 
 ![boundary extraction](assets/004_morphological/boundary-extraction.png)
+
+### Filling in holes
+
+Steps:
+1. Read img
+1. Threshold to binary img
+1. Flood fill from pixel (0,0). Note how background has swapped from black -> white
+1. Invert the image
+1. Combine the thresholded image with the inverted flood-filled image using bitwise OR operation
+
+![fill holes](https://learnopencv.com/wp-content/uploads/2015/11/imfill-opencv-steps.jpg)
+
+Another way to fill images is by using a combination of techniques we have seen above: 
+
+![region filling](assets/004_morphological/region-filling.png)

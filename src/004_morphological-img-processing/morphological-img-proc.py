@@ -61,6 +61,26 @@ image_copy = img.copy()
 cv2.drawContours(image=image_copy, contours=contours, contourIdx=-1, color=(0, 255, 0), thickness=2, lineType=cv2.LINE_AA)
 cv2.imshow('None approximation', image_copy)
 
+# Filling holes
+
+im_flood = thresh.copy()
+
+# Notice the size needs to be 2 pixels than the image.
+h, w = thresh.shape[:2]
+mask = np.zeros((h+2, w+2), np.uint8)
+
+# Floodfill from point (0, 0)
+cv2.floodFill(im_flood, mask, (0,0), 255)
+
+# invert
+im_floodfill_inv = cv2.bitwise_not(im_flood)
+
+# Combine the two images to get the foreground.
+im_out = thresh | im_floodfill_inv
+
+cv2.imshow("Flood", im_flood)
+cv2.imshow("Inverted flood", im_floodfill_inv)
+cv2.imshow("Foreground", im_out)
 
 # 0 = wait for infinite time for any key press
 cv2.waitKey(0)
