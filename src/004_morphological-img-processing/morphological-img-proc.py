@@ -48,6 +48,18 @@ closing_se = cv2.morphologyEx(gray, cv2.MORPH_CLOSE, se)
 
 cv2.imshow("closing with se", closing_se)
 
+# Boundary Extraction
+
+ret, thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)
+cv2.imshow('Binary image', thresh)
+
+# detect the contours on the binary image using cv2.CHAIN_APPROX_NONE
+contours, hierarchy = cv2.findContours(image=thresh, mode=cv2.RETR_TREE, method=cv2.CHAIN_APPROX_NONE)
+
+# draw contours on the original image
+image_copy = img.copy()
+cv2.drawContours(image=image_copy, contours=contours, contourIdx=-1, color=(0, 255, 0), thickness=2, lineType=cv2.LINE_AA)
+cv2.imshow('None approximation', image_copy)
 
 
 # 0 = wait for infinite time for any key press

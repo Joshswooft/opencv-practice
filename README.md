@@ -295,3 +295,12 @@ Tutorial example
 ![dilation](assets/004_morphological/tut/dilation.png) Dilation
 
 ### Boundary Extraction
+
+Applications:
+- Motion detection
+- background/foreground segmentation (replacing the bg/fg of an image with another)
+
+The contour-detection algorithms in OpenCV work very well, when the image has a dark background and a well-defined object-of-interest. 
+But when the background of the input image is cluttered or has the same pixel intensity as the object-of-interest, the algorithms don’t fare so well.
+
+![boundary extraction](assets/004_morphological/boundary-extraction.png)
