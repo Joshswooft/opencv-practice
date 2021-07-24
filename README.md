@@ -319,3 +319,25 @@ Steps:
 Another way to fill images is by using a combination of techniques we have seen above: 
 
 ![region filling](assets/004_morphological/region-filling.png)
+
+### Hit or miss transform
+
+Very simple object recognition
+
+How it works: 
+- If foreground (FG) AND background (BG) pixels match image region covered by SE
+- Then set pixel at origin to 1 (FG) 
+- ELSE set pixel to 0 (BG)
+
+
+Example: Corner detection
+
+- Create 4 SE's (one for each corner)
+- OR the outputs. 
+
+Example: Thinning
+
+- Repeat until no change
+    - Repeat with each thinning SE
+        - calculate hit-or-miss transform of current img with SE
+        - subtract the result from the current img to yield new current img
